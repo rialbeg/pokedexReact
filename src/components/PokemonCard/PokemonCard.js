@@ -1,22 +1,7 @@
 import styled, { css } from 'styled-components'
 import {Color} from 'objs/Colors'
 
-
-const Container = styled.div`
-        display:flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap:20px;
-        padding:50px;
-`
-const PokeTitle = styled.img`
-    width:600px;
-    margin:0 auto;
-    display:block;
-    padding:20px 20px 0 20px;
-`
-
-const Card = styled.div`
+const CardContainer = styled.div`
     background-color: green;
     width:250px;
     height:350px;
@@ -47,33 +32,24 @@ const IdNumber = styled.div`
     font-size:28px;
     padding:10px 50px;
     border-radius: 10px;
-`
-
-const PokemonName = styled.div`
+    color:black;
+    `
+    
+    const PokemonName = styled.div`
     font-size:22px;
     margin-top:30px;
     text-transform:capitalize;
+    color:black;
 `
-
-const LoadMore = styled.button`
-        padding:10px 15px;
-        border-radius:10px;
-        margin:20px auto;
-        display:block;
-        font-size:30px;
-        &:hover {
-            cursor:pointer;
-        }
-` 
 const PokemonCard = (props) => {
     return(
-            <Card color={Color[props.Type]}>
+            <CardContainer color={Color[props.Type]}>
                 <Sprite src={props.Image} alt=""></Sprite>
                 <IdNumber>#{props.IdNumber}</IdNumber>
                 <PokemonName>{props.Name}</PokemonName>
-            </Card>
+            </CardContainer>
     )
 }
 
 
-export { PokemonCard,Container,PokeTitle,LoadMore }
+export { PokemonCard }
