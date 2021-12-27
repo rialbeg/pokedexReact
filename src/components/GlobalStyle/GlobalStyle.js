@@ -27,6 +27,8 @@ const Global = createGlobalStyle`
   }
   body {
     font-family: 'Press Start 2P', cursive;
+    width:80%;
+    margin: 0 auto;
     ${props => props.theme && css`
         background: ${props.theme.backgroundColor};
         color: ${props.theme.color};

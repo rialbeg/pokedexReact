@@ -1,0 +1,15 @@
+.description > *
+{
+	margin-top:20px;
+}
+
+.description-box div > *{
+	margin-top:10px;
+	
+}
+
+.poke-img {
+	width:380px;
+	height:380px;
+}
+

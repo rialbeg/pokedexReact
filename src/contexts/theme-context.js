@@ -6,12 +6,14 @@ export const themes = {
 	light:{
 		color:'#000000',
 		backgroundColor:'#64C1DB',
-		icon:Lunatone
+		icon:Lunatone,
+		cardColor:'#A0EF7B',
 	},
 	dark:{
 		color:'#ffffff',
 		backgroundColor:'#1E2641',
-		icon:Solrock
+		icon:Solrock,
+		cardColor:'#4A4B85'
 	}
 }
 export const ThemeContext = createContext({})
