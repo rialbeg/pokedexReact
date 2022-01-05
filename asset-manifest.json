@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/rialbeg/pokedexReact/static/css/main.0864897f.css",
+    "main.js": "/rialbeg/pokedexReact/static/js/main.b7a70f3c.js",
+    "static/js/787.f6596ca6.chunk.js": "/rialbeg/pokedexReact/static/js/787.f6596ca6.chunk.js",
+    "static/media/lunatone.png": "/rialbeg/pokedexReact/static/media/lunatone.a79efb93334ddb8eb997.png",
+    "static/media/solrock.png": "/rialbeg/pokedexReact/static/media/solrock.f8ae52f38691b740a8d9.png",
+    "static/media/pokemon-logo.png": "/rialbeg/pokedexReact/static/media/pokemon-logo.c8e5f5413616d2d8709c.png",
+    "index.html": "/rialbeg/pokedexReact/index.html",
+    "main.0864897f.css.map": "/rialbeg/pokedexReact/static/css/main.0864897f.css.map",
+    "main.b7a70f3c.js.map": "/rialbeg/pokedexReact/static/js/main.b7a70f3c.js.map",
+    "787.f6596ca6.chunk.js.map": "/rialbeg/pokedexReact/static/js/787.f6596ca6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0864897f.css",
+    "static/js/main.b7a70f3c.js"
+  ]
+}
