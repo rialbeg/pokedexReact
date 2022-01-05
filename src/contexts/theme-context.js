@@ -8,12 +8,14 @@ export const themes = {
 		backgroundColor:'#64C1DB',
 		icon:Lunatone,
 		cardColor:'#A0EF7B',
+		abilityColor:'#96DCF0'
 	},
 	dark:{
 		color:'#ffffff',
 		backgroundColor:'#1E2641',
 		icon:Solrock,
-		cardColor:'#4A4B85'
+		cardColor:'#4A4B85',
+		abilityColor:'#1C201E'
 	}
 }
 export const ThemeContext = createContext({})

@@ -19,7 +19,7 @@ const SubTitle = styled.h2`
 const FlexContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin: 80px;
+  margin: 25px;
 `;
 
 const DescriptionBox = styled.div`
@@ -28,22 +28,56 @@ const DescriptionBox = styled.div`
   border: 10px solid black;
   border-radius: 10px;
   padding: 10px;
-  ${props => props.cardColor && css`
-        background: ${props.cardColor};
-  `}
-  
+  ${(props) =>
+    props.cardColor &&
+    css`
+      background: ${props.cardColor};
+    `}
 `;
 
+const PokeImg = styled.img`
+  width: 380px;
+  height: 380px;
+`;
+
+const AbilityCard = styled.div`
+  border: 10px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
+  ${(props) =>
+    props.color &&
+    css`
+      background: ${props.color};
+    `}
+`;
+
+const MovesList = styled.ul`
+overflow: auto; 
+height: 250px; 
+margin-top: 10px;
+margin-bottom:20px; 
+padding: 10px;
+border: 10px solid black;
+border-radius: 10px;
+text-align:center;
+${(props) =>
+  props.color &&
+  css`
+    background: ${props.color};
+  `}
+`;
 const PokemonInfo = () => {
   const [pokemon, setPokemon] = useState({});
   const [types, setTypes] = useState([]);
   const [abilities, setAbilities] = useState([]);
+  const [abilityDesc, setAbilityDesc] = useState([]);
   const [description, setDescription] = useState({});
   const [image, setImage] = useState("");
+  const [moves, setMoves] = useState([]);
   const { name } = useParams();
-  const { theme, setTheme } = useContext(ThemeContext);
-  
-  
+  const { theme } = useContext(ThemeContext);
+
   const getPokemonDescription = async (url) => {
     const res = await fetch(`${url}`);
     const data = await res.json();
@@ -58,6 +92,21 @@ const PokemonInfo = () => {
     setDescription(desc);
   };
 
+  const getAbilityDescription = async (url) => {
+    const res = await fetch(`${url}`);
+    const data = await res.json();
+
+    let abilityObj = {};
+    data.effect_entries.find((entry) => {
+      if (entry.language.name === "en") {
+        abilityObj.description = entry.effect;
+      }
+    });
+    abilityObj.name = data.name;
+    console.log(abilityObj);
+    setAbilityDesc((currentList) => [...currentList, abilityObj]);
+  };
+
   const getPokemonByName = async (name) => {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     const data = await res.json();
@@ -67,6 +116,10 @@ const PokemonInfo = () => {
     setImage(data.sprites.other["official-artwork"].front_default);
     setTypes(data.types);
     setAbilities(data.abilities);
+    data.abilities.map((entry) => {
+      getAbilityDescription(entry.ability.url);
+    });
+    setMoves(data.moves);
     getPokemonDescription(data.species.url);
   };
   useEffect(() => {
@@ -77,12 +130,12 @@ const PokemonInfo = () => {
       <Title>
         {name.toUpperCase()} | Nº{pokemon.id}
       </Title>
-      <SubTitle>Type</SubTitle>
-
       <div>
         <ThemeTogglerButton />
         <Link to="/">Voltar</Link>
       </div>
+
+      <SubTitle>Type</SubTitle>
       <FlexContainer>
         {types.map((type, index) => (
           <TypeButton type={type.type.name} key={index}>
@@ -92,19 +145,22 @@ const PokemonInfo = () => {
       </FlexContainer>
 
       <FlexContainer>
-        <img className="poke-img" src={image} alt="" />
+        <PokeImg pokemon={pokemon} src={image} alt="" />
         <div className="description">
           <h2>Description</h2>
           <p>{description.flavor_text}</p>
-          <DescriptionBox cardColor={theme.cardColor} className="description-box">
+          <DescriptionBox
+            cardColor={theme.cardColor}
+            className="description-box"
+          >
             <div>
               <h3>Height</h3>
-              <p>{pokemon.height}</p>
+              <p>{pokemon.height}m</p>
               <h3>Weight</h3>
-              <p>{pokemon.weight}</p>
+              <p>{pokemon.weight}kg</p>
             </div>
             <div>
-              <h3>Abilties</h3>
+              <h3>Abilities</h3>
               {abilities.map((ability, index) => (
                 <p key={index}>{ability.ability.name}</p>
               ))}
@@ -112,6 +168,21 @@ const PokemonInfo = () => {
           </DescriptionBox>
         </div>
       </FlexContainer>
+      {abilityDesc.map((desc, index) => (
+        <AbilityCard key={index} color={theme.abilityColor}>
+          <h3>{desc.name.toUpperCase()}</h3>
+          <br />
+          {desc.description}
+        </AbilityCard>
+        // console.log(desc.name)
+      ))}
+
+      <h3 style={{ marginTop: 20, textAlign:'center' }}>Moves</h3>
+      <MovesList color={theme.abilityColor}>
+        {moves.map((entry, index) => (
+          <li style={{marginBottom:10}} key={index}>{entry.move.name}</li>
+        ))}
+      </MovesList>
     </>
   );
 };

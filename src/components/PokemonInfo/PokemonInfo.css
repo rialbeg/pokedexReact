@@ -8,8 +8,12 @@
 	
 }
 
-.poke-img {
-	width:380px;
-	height:380px;
+p{
+	margin-top:10px;
 }
 
+.move-list{
+	height:100px;
+	background:red;
+	overflow:auto;
+}
