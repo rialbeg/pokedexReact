@@ -13,7 +13,7 @@
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.2"
   },
-  "homepage": "https://github.com/rialbeg/pokedexReact",
+  "homepage": "https://rialbeg.github.io/pokedexReact/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
